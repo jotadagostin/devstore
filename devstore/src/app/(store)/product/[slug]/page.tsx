@@ -13,8 +13,21 @@ async function getProduct(slug: string): Promise<Product> {
     next: { revalidate: 60 * 60 }, // Revalidate every hour
   });
 
-  const product = await response.json();
-  return product;
+  const text = await response.text();
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to load product ${slug}: ${response.status} ${response.statusText} - ${text || "<empty response>"}`,
+    );
+  }
+
+  try {
+    return JSON.parse(text) as Product;
+  } catch (error) {
+    throw new Error(
+      `Invalid JSON for product ${slug}: ${text || "<empty response>"} (${error})`,
+    );
+  }
 }
 
 export default async function ProductPage({ params }: ProductProps) {
