@@ -1,3 +1,4 @@
+import { AddToCartButton } from "@/components/Add-to-cart-button";
 import { api } from "@/data/api";
 import { Product } from "@/data/types/product";
 import { Metadata } from "next";
@@ -87,37 +88,32 @@ export default async function ProductPage({ params }: ProductProps) {
           <div className="flex gap-2">
             <button
               type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold"
+              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold cursor-pointer"
             >
               P
             </button>
             <button
               type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold"
+              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold cursor-pointer"
             >
               M
             </button>
             <button
               type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold"
+              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold cursor-pointer"
             >
               G
             </button>
             <button
               type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold"
+              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold cursor-pointer"
             >
               GG
             </button>
           </div>
         </div>
 
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white"
-        >
-          Add to cart
-        </button>
+        <AddToCartButton productId={product.id} />
       </div>
     </div>
   );
