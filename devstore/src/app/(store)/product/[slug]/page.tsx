@@ -1,4 +1,5 @@
 import { AddToCartButton } from "@/components/Add-to-cart-button";
+import { SizeSelector } from "@/components/Size-selector";
 import { api } from "@/data/api";
 import { Product } from "@/data/types/product";
 import { Metadata } from "next";
@@ -77,40 +78,10 @@ export default async function ProductPage({ params }: ProductProps) {
           <span className="inline-block rounded-full bg-violet-500 px-5 py-2.5 font-semibold">
             ${product.price.toFixed(2)}
           </span>
-          <span className="text-sm text-zinc-400">
-            {(product.price / 12).toFixed(2)}
-          </span>
         </div>
 
         <div className="mt-8 space-y-4">
-          <span className="block font-semibold">Sizes</span>
-
-          <div className="flex gap-2">
-            <button
-              type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold cursor-pointer"
-            >
-              P
-            </button>
-            <button
-              type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold cursor-pointer"
-            >
-              M
-            </button>
-            <button
-              type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold cursor-pointer"
-            >
-              G
-            </button>
-            <button
-              type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold cursor-pointer"
-            >
-              GG
-            </button>
-          </div>
+          <SizeSelector />
         </div>
 
         <AddToCartButton productId={product.id} />
