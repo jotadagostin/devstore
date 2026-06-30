@@ -4,13 +4,15 @@ import { useCart } from "@/context/cart-context";
 import { ShoppingBag } from "lucide-react";
 
 export function CardWidget() {
-  const { items } = useCart();
+  const { items, openCart } = useCart();
   return (
-    <div>
+    <button type="button" onClick={openCart} className="cursor-pointer">
       <div className="flex items-center gap-2">
         <ShoppingBag className="w-4 h-4" />
-        <span className="text-sm text-zinc-500">Cart {items.length}</span>
+        <span className="text-sm text-zinc-500 cursor-pointer hover:underline">
+          Cart {items.length}
+        </span>
       </div>
-    </div>
+    </button>
   );
 }

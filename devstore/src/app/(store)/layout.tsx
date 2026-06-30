@@ -1,3 +1,4 @@
+import { Cart } from "@/components/Cart";
 import { Header } from "@/components/Header";
 import { CartProvider } from "@/context/cart-context";
 import { ReactNode } from "react";
@@ -9,6 +10,7 @@ export default function StoreLayout({ children }: { children: ReactNode }) {
         <Header />
         {children}
       </div>
+      <Cart />
     </CartProvider>
   );
 }
