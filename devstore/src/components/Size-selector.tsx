@@ -4,12 +4,19 @@ import { useState } from "react";
 
 interface SizeSelectorProps {
   sizes?: string[];
+  onSizeSelected: (size: string) => void;
 }
 
 export function SizeSelector({
   sizes = ["P", "M", "G", "GG"],
+  onSizeSelected,
 }: SizeSelectorProps) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+
+  function handleSelectSize(size: string) {
+    setSelectedSize(size);
+    onSizeSelected(size);
+  }
 
   return (
     <div className="mt-8 space-y-4">
@@ -20,7 +27,7 @@ export function SizeSelector({
           <button
             key={size}
             type="button"
-            onClick={() => setSelectedSize(size)}
+            onClick={() => handleSelectSize(size)}
             className={`flex h-9 w-14 items-center justify-center cursor-pointer rounded-full border text-sm font-semibold transition-colors ${
               selectedSize === size
                 ? "border-violet-500 bg-violet-500 text-white"

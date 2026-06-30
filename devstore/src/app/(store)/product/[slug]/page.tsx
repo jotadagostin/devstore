@@ -4,6 +4,7 @@ import { api } from "@/data/api";
 import { Product } from "@/data/types/product";
 import { Metadata } from "next";
 import Image from "next/image";
+import { ProductActions } from "./product-action";
 
 interface ProductProps {
   params: Promise<{
@@ -80,11 +81,7 @@ export default async function ProductPage({ params }: ProductProps) {
           </span>
         </div>
 
-        <div className="mt-8 space-y-4">
-          <SizeSelector />
-        </div>
-
-        <AddToCartButton productId={product.id} />
+        <ProductActions productId={product.id} />
       </div>
     </div>
   );

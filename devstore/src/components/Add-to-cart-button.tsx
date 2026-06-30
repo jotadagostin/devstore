@@ -4,18 +4,25 @@ import { useCart } from "@/context/cart-context";
 
 export interface AddToCartButtonProps {
   productId: number;
+  selectedSize: string | null;
 }
 
-export function AddToCartButton({ productId }: AddToCartButtonProps) {
+export function AddToCartButton({
+  productId,
+  selectedSize,
+}: AddToCartButtonProps) {
   const { addToCart } = useCart();
 
   function handleaddProductCart() {
-    addToCart(productId);
+    if (!selectedSize) return;
+
+    addToCart(productId, selectedSize);
   }
   return (
     <button
       type="button"
       onClick={handleaddProductCart}
+      disabled={!selectedSize}
       className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white cursor-pointer"
     >
       Add to cart
