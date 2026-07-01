@@ -81,7 +81,7 @@ export default async function ProductPage({ params }: ProductProps) {
           </span>
         </div>
 
-        <ProductActions productId={product.id} />
+        <ProductActions productId={product.id} slug={product.slug} />
       </div>
     </div>
   );

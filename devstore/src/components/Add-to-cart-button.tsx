@@ -4,11 +4,13 @@ import { useCart } from "@/context/cart-context";
 
 export interface AddToCartButtonProps {
   productId: number;
+  slug: string;
   selectedSize: string | null;
 }
 
 export function AddToCartButton({
   productId,
+  slug,
   selectedSize,
 }: AddToCartButtonProps) {
   const { addToCart } = useCart();
@@ -16,7 +18,7 @@ export function AddToCartButton({
   function handleaddProductCart() {
     if (!selectedSize) return;
 
-    addToCart(productId, selectedSize);
+    addToCart(productId, slug, selectedSize);
   }
   return (
     <button

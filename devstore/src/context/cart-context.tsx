@@ -4,6 +4,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 interface CartItem {
   productId: number;
+  slug: string;
   size: string;
   quantity: number;
 }
@@ -13,7 +14,7 @@ interface CartContextType {
   isOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
-  addToCart: (productId: number, size: string) => void;
+  addToCart: (productId: number, slug: string, size: string) => void;
   removeFromCart: (productId: number, size: string) => void;
 }
 
@@ -31,7 +32,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setIsOpen(false);
   }
 
-  function addToCart(productId: number, size: string) {
+  function addToCart(productId: number, slug: string, size: string) {
     setCartItems((state) => {
       const productInCart = state.some(
         (item) => item.productId === productId && item.size === size,
@@ -46,10 +47,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         });
       }
 
-      return [...state, { productId, size, quantity: 1 }];
+      return [...state, { productId, slug, size, quantity: 1 }];
     });
-
-    setIsOpen(true);
   }
 
   function removeFromCart(productId: number, size: string) {

@@ -3,6 +3,7 @@
 import { useCart } from "@/context/cart-context";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
+import { CartItem } from "./Cart-item";
 
 export function Cart() {
   const { items, isOpen, closeCart, removeFromCart } = useCart();
@@ -10,9 +11,12 @@ export function Cart() {
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && closeCart()}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/60" />
+        <Dialog.Overlay className="fixed inset-0 bg-black/60 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out" />
 
-        <Dialog.Content className="fixed right-0 top-0 h-full w-full max-w-md bg-zinc-900 p-8 flex flex-col gap-6">
+        <Dialog.Content
+          onCloseAutoFocus={(e) => e.preventDefault()}
+          className="fixed right-0 top-0 h-full w-full max-w-md bg-zinc-900 p-8 flex flex-col gap-6 data-[state=open]:animate-slide-in data-[state=closed]:animate-slide-out"
+        >
           <div className="flex items-center justify-between">
             <Dialog.Title className="text-xl font-bold">Your cart</Dialog.Title>
 
@@ -28,25 +32,13 @@ export function Cart() {
           ) : (
             <div className="flex flex-1 flex-col gap-4 overflow-y-auto">
               {items.map((item) => (
-                <div
+                <CartItem
                   key={`${item.productId}-${item.size}`}
-                  className="flex items-center justify-between rounded-lg bg-zinc-800 p-4"
-                >
-                  <div>
-                    <p className="font-semibold">Product #{item.productId}</p>
-                    <p className="text-sm text-zinc-400">
-                      Size: {item.size} • Qty: {item.quantity}
-                    </p>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => removeFromCart(item.productId, item.size)}
-                    className="text-sm text-red-400 cursor-pointer hover:underline"
-                  >
-                    Remove
-                  </button>
-                </div>
+                  productId={item.productId}
+                  slug={item.slug}
+                  size={item.size}
+                  quantity={item.quantity}
+                />
               ))}
             </div>
           )}
