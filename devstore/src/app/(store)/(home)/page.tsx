@@ -22,10 +22,10 @@ export default async function Home() {
   const [highLightedProduct, ...otherProducts] = await getFeaturedProducts();
 
   return (
-    <div className="grid max-h-215 grid-cols-9 grid-rows-6 gap-6">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-9 sm:grid-rows-6 sm:max-h-215">
       <Link
         href={`/product/${highLightedProduct.slug}`}
-        className="group relative col-span-6 row-span-6 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-end"
+        className="group relative sm:col-span-6 sm:row-span-6 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-end"
       >
         <Image
           src={highLightedProduct.image}
@@ -35,7 +35,7 @@ export default async function Home() {
           quality={100}
           className="group-hover:scale-105 transition-transform duration-300"
         />
-        <div className="absolute bottom-28 h-12 right-28 flex items-center gap-2 max-w-70 rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
+        <div className="absolute bottom-6 right-6 sm:bottom-28 sm:right-28 h-12 flex items-center gap-2 max-w-[70%] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
           <span className="text-sm truncate">{highLightedProduct.title}</span>
           <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
             ${highLightedProduct.price.toFixed(2)}
@@ -43,30 +43,32 @@ export default async function Home() {
         </div>
       </Link>
 
-      {otherProducts.map((product) => {
-        return (
-          <Link
-            key={product.id}
-            href={`/product/${product.slug}`}
-            className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-end"
-          >
-            <Image
-              src={product.image}
-              alt={product.title}
-              width={920}
-              height={920}
-              quality={100}
-              className="group-hover:scale-105 transition-transform duration-300"
-            />
-            <div className="absolute bottom-10 h-12 right-10 flex items-center gap-2 max-w-70 rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
-              <span className="text-sm truncate">{product.title}</span>
-              <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
-                ${product.price.toFixed(2)}
-              </span>
-            </div>
-          </Link>
-        );
-      })}
+      <div className="grid grid-cols-2 gap-6 sm:contents">
+        {otherProducts.map((product) => {
+          return (
+            <Link
+              key={product.id}
+              href={`/product/${product.slug}`}
+              className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-end"
+            >
+              <Image
+                src={product.image}
+                alt={product.title}
+                width={920}
+                height={920}
+                quality={100}
+                className="group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-10 h-12 right-10 flex items-center gap-2 max-w-70 rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
+                <span className="text-sm truncate">{product.title}</span>
+                <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
+                  ${product.price.toFixed(2)}
+                </span>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

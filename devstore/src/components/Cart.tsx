@@ -15,7 +15,7 @@ export function Cart() {
 
         <Dialog.Content
           onCloseAutoFocus={(e) => e.preventDefault()}
-          className="fixed right-0 top-0 h-full w-full max-w-md bg-zinc-900 p-8 flex flex-col gap-6 data-[state=open]:animate-slide-in data-[state=closed]:animate-slide-out"
+          className="fixed right-0 top-0 h-full w-full sm:max-w-md bg-zinc-900 p-6 sm:p-8 flex flex-col gap-6 data-[state=open]:animate-slide-in data-[state=closed]:animate-slide-out"
         >
           <div className="flex items-center justify-between">
             <Dialog.Title className="text-xl font-bold">Your cart</Dialog.Title>

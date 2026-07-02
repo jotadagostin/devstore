@@ -28,7 +28,7 @@ export function SearchForm() {
   return (
     <form
       onSubmit={handleSearch}
-      className="flex w-[320px] items-center gap-3 rounded-full bg-zinc-900 px-5 py-3 ring-zinc-700"
+      className="flex w-full sm:w-[320px] items-center gap-2 rounded-full bg-zinc-900 px-4 py-2 sm:px-5 sm:py-3"
     >
       <SearchIcon className="w-5 h-5 text-zinc-500" />
       <input

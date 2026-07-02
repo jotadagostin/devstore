@@ -35,7 +35,7 @@ export default async function Search({ searchParams }: SearchProps) {
         Results for: <span className="font-semibold">{query}</span>
       </p>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => {
           return (
             <Link
@@ -52,7 +52,7 @@ export default async function Search({ searchParams }: SearchProps) {
                 alt=""
               />
 
-              <div className="absolute bottom-10 right-10 h-12 flex items-center gap-2 max-w-70 rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
+              <div className="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 h-12 flex items-center gap-2 max-w-[70%] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
                 <span className="text-sm truncate">{product.title}</span>
                 <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
                   {product.price.toLocaleString("en-US", {
